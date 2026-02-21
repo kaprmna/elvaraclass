@@ -1,3 +1,5 @@
+import { createClient } from '@supabase/supabase-js'
+
 let messages = [
   { id: 1, message: "ELVARAAAA", timestamp: "2026-02-19T11:57:31.860Z" },
   { id: 2, message: "ELVARA JAYAAAAA!!!", timestamp: "2026-02-19T15:54:22.837Z" },
@@ -15,48 +17,48 @@ let messages = [
   { id: 14, message: "Kawiy diem", timestamp: "2026-02-20T19:02:14.707Z" }
 ]
 
+const supabase = createClient(
+  process.env.SUPABASE_URL,
+  process.env.SUPABASE_ANON_KEY
+)
+
 export default async function handler(req, res) {
 
-  if (req.method === "GET") {
-    return res.status(200).json(messages)
+  if (req.method === 'GET') {
+    const { data, error } = await supabase
+      .from('chat')
+      .select('*')
+      .order('id', { ascending: true })
+
+    if (error) return res.status(500).json({ error })
+
+    return res.status(200).json(data)
   }
 
-  if (req.method === "POST") {
-
+  if (req.method === 'POST') {
     const { message } = req.body
+
     if (!message) {
       return res.status(400).json({ error: "Message required" })
     }
 
-    const newMessage = {
-      id: Date.now(),
-      message,
-      timestamp: new Date().toISOString(),
-    }
+    const { data, error } = await supabase
+      .from('chat')
+      .insert([{ message }])
+      .select()
 
-    messages.push(newMessage)
+    if (error) return res.status(500).json({ error })
 
-    try {
-      // kirim file JSON ke Discord
-      const jsonContent = JSON.stringify(messages, null, 2)
-
-      const formData = new FormData()
-      formData.append("file", new Blob([jsonContent], { type: "application/json" }), "chat-backup.json")
-      formData.append("payload_json", JSON.stringify({
-        content: "📦 Chat Backup Updated"
-      }))
-
-      await fetch(process.env.DISCORD_WEBHOOK_URL, {
-        method: "POST",
-        body: formData
+    await fetch(process.env.DISCORD_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        content: `💬 New Chat\nMessage: ${message}\nTime: ${new Date().toISOString()}`
       })
+    })
 
-    } catch (err) {
-      console.error("Discord backup failed:", err)
-    }
-
-    return res.status(200).json({ success: true })
+    return res.status(200).json(data)
   }
 
-  return res.status(405).end()
+  res.status(405).json({ error: "Method not allowed" })
 }

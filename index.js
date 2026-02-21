@@ -29,12 +29,6 @@ server.use(rateLimit({
 server.set('trust proxy', 1);
 server.use(express.static(__dirname + '/public'));
 
-//API SET
-let message = [];
-server.get('/api/chat', function(req, res) {
-
-});
-
 //ROUTE SET
 server.all('/', function (req, res) {
     //const tempUrl = 'fancytest.vercel.app';
