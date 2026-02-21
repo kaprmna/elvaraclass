@@ -61,7 +61,9 @@ server.all('/', function (req, res) {
 server.use(express.static(__dirname + '/public/html/elvara/dist'));
 
 //SERVER SET
+module.exports = server;
+/*
 const runPort = 5000;
 server.listen(runPort, function () {
     console.log(`Server Running`);
-});
+});*/
