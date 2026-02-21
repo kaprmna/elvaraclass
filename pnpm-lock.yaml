@@ -9,7 +9,7 @@ importers:
   .:
     dependencies:
       body-parser:
-        specifier: ^1.20.2
+        specifier: ^1.20.3
         version: 1.20.3
       compression:
         specifier: ^1.7.5
@@ -18,11 +18,14 @@ importers:
         specifier: ^3.1.10
         version: 3.1.10
       express:
-        specifier: ^4.19.2
+        specifier: ^4.21.1
         version: 4.21.1
       express-rate-limit:
-        specifier: ^7.4.0
+        specifier: ^7.4.1
         version: 7.4.1(express@4.21.1)
+      fs:
+        specifier: 0.0.1-security
+        version: 0.0.1-security
       nodemon:
         specifier: ^3.1.7
         version: 3.1.7
@@ -205,6 +208,9 @@ packages:
   fresh@0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
     engines: {node: '>= 0.6'}
+
+  fs@0.0.1-security:
+    resolution: {integrity: sha512-3XY9e1pP0CVEUCdj5BmfIZxRBTSDycnbqhIOGec9QYtmVH2fbLpj86CFWkrNOkt/Fvty4KZG5lTglL9j/gJ87w==}
 
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
@@ -686,6 +692,8 @@ snapshots:
   forwarded@0.2.0: {}
 
   fresh@0.5.2: {}
+
+  fs@0.0.1-security: {}
 
   fsevents@2.3.3:
     optional: true

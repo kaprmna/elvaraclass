@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ==========================================
+                  Box Icons
+    =========================================== -->
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+     <link rel="icon" type="image/jpg" href="../assets/image/6264997648998188421.jpg" />
+    <!-- ==========================================
+                  Custom CSS
+    =========================================== -->
+    <link rel="stylesheet" href="../assets/style.css" />
+    <!-- ==========================================
+                  Breakpoint
+    =========================================== -->
+    <link rel="stylesheet" href="../assets/breakpoint.css" />
+    <title>GrowFancy || Exprience Private Server</title>
+  </head>
+  <body>
+    <!-- ==========================================
+                    Header
+    =========================================== -->
+    <header class="header">
+      <a href="#" class="logo">Grow<span>Fancy</span></a>
+
+      <i class="bx bx-menu" id="menu-icon"></i>
+
+      <nav class="navbar">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#tutorial">Tutorial</a>
+        <a href="#home">Community</a>
+      </nav>
+    </header>
+
+    <!-- ==========================================
+                  Home Section
+    =========================================== -->
+    <section class="home" id="home">
+      <div class="home-content">
+        <div class="home-img">
+          <img src="assets/image/6264997648998188420.jpg" alt="home" />
+      </div>
+        <h3>Welcome to <span class="multiple-text"></span></h3>
+        <div class="social-media">
+          <a href="https://discord.gg/uCXtFhuT"><i class="bx bxl-discord"></i></a>
+          <a href="https://chat.whatsapp.com/LyLEFWjDvXH5gUiDAKDdlN"><i class="bx bxl-whatsapp"></i></a>
+        </div>
+        <h3>Join community GrowFancy by click button below!!</h3>
+      </div>
+    </section>
+
+    <!-- ==========================================
+                  About Section
+    =========================================== -->
+    <section class="about" id="about">
+      <div class="about-img">
+        <img src="assets/image/6264997648998188421.jpg" alt="about" />
+      </div>
+
+      <div class="about-content">
+        <h2 class="heading">About <span>GrowFancy</span></h2>
+        <p>
+          Created on November 23, 2023, created by Jar0443 / Jarsis, 
+          Fancytopia / GrowFancy had been running from November 23 to the end of December,
+          at the end of December Jar decided to stop / pause continuing the fancytopia server, 
+          then in mid-2024 in August Fancytopia / GrowFancy was resumed in August to the end of October, 
+          and the current year is 2025 we want to continue this server to create an experience & to have fun'
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+                  tutorial Section
+    =========================================== -->
+    <section class="tutorial" id="tutorial">
+      <h2 class="heading">Tuto<span>rial</span></h2>
+      <h1>Please select the application you want to use</h1>
+      <ul class="platform-list">
+        <li>
+          <a onclick="openModal('hostsgo')" target="_blank"><img src="assets/icon/hostsgo.png" alt="growfancyimg"></a>
+        </li>
+        <li>
+          <a onclick="openModal('powertunnel')" target="_blank"><img src="assets/icon/powertunnel.png" alt="growfancyimg"></a>
+        </li>
+        <li>
+          <a onclick="openModal('vhost')" target="_blank"><img src="assets/icon/vhost.png" alt="growfancyimg"></a>
+        </li>
+        <li>
+          <a onclick="openModal('surge5')" target="_blank"><img src="assets/icon/surge5.png" alt="growfancyimg"></a>
+        </li>
+        <li>
+          <a onclick="openModal('windows')" target="_blank"><img src="assets/icon/windows.png" alt="growfancyimg"></a>
+        </li>
+        <li>
+          <a onclick="openModal('mac')" target="_blank"><img src="assets/icon/mac.png" alt="growfancyimg"></a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ==========================================
+                    Footer
+    =========================================== -->
+    <footer class="footer">
+      <div class="footer-text">
+        <p>Copyright &copy; 2023 - 2025 GrowFancy | All Rights Reserved.</p>
+      </div>
+
+      <div class="footer-iconTop">
+        <a href="#home"><i class="bx bx-up-arrow-alt"></i></a>
+      </div>
+    </footer>
+
+    <!-- ==========================================
+                  Scroll Reveal
+    =========================================== -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <!-- ==========================================
+                   Typed Js
+    =========================================== -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    <!-- ==========================================
+                  Custom Js
+    =========================================== -->
+    <script src="../assets/main.js"></script>
+
+    <!-- Modal Overlay & Modal -->
+    <div id="modalOverlay" style="display:none;"></div>
+    <div id="modalBox" style="display:none;">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+  </body>
+</html>
