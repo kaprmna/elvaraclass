@@ -1,47 +1,55 @@
 const express = require('express');
-const app = express();
 const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 
+const server = express();
+
 //SET SECURITY
-app.use(compression({
+server.use(compression({
     level: 5,
     filter: (req, res) => {
         if (req.headers['X-No-Compression']) return false;
         return compression.filter(req, res);
     }
 }));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(function (req, res, next) {
+server.use(bodyParser.urlencoded({ extended: true }));
+server.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     console.log(`${req.method} request for '${req.url}' - ${JSON.stringify(req.body)} | Status: ${res.statusCode}`);
     next();
 });
-app.use(express.json());
-app.use(rateLimit({
+server.use(express.json());
+server.use(rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 100,
     message: 'Too many requests from this IP, please try again after an hour',
 }));
-app.set('trust proxy', 1);
-app.use(express.static(__dirname + '/public'));
+server.set('trust proxy', 1);
+server.use(express.static(__dirname + '/public'));
+
+//API SET
+let message = [];
+server.get('/api/chat', function(req, res) {
+
+});
 
 //ROUTE SET
-app.all('/', function (req, res) {
+server.all('/', function (req, res) {
     const tempUrl = 'fancytest.vercel.app';
     const hostname = req.hostname;
     switch (hostname) {
-        case tempUrl:
+        //case tempUrl:
         case 'fancycdn.fun':
             return res.sendFile(__dirname + '/public/html/main/index.html');
 
+            case tempUrl:
             case 'elvaraclass.fancycdn.fun':
-                return res.sendFile(__dirname + 'public/html/elvara/dist/index.html');
+                return res.sendFile(__dirname + '/public/html/elvara/dist/index.html');
 
                 case 'ddika.fancycdn.fun':
-                    return res.sendFile(__dirname + 'public/html/ddika/index.html');
+                    return res.sendFile(__dirname + '/public/html/ddika/index.html');
 
                     default:
                         res.send('Unknown domain');
@@ -49,8 +57,11 @@ app.all('/', function (req, res) {
     //res.sendFile(__dirname + '/public/html/main/index.html');
 });
 
+//FOR ELVARA CLASS
+server.use(express.static(__dirname + '/public/html/elvara/dist'));
+
 //SERVER SET
 const runPort = 5000;
-app.listen(runPort, function () {
+server.listen(runPort, function () {
     console.log(`Server Running`);
 });
