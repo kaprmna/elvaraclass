@@ -44,7 +44,7 @@ server.get('/', function (req, res) {
 
         case 'fancytest.vercel.app':
             return res.sendFile(
-                path.join(__dirname, '../html/main/index.html')
+                path.join(__dirname + '/html/main/index.html')
             );
 
         case 'elvaraclass.fancycdn.fun':
