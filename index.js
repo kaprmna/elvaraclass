@@ -37,14 +37,13 @@ server.get('/api/chat', function(req, res) {
 
 //ROUTE SET
 server.all('/', function (req, res) {
-    const tempUrl = 'fancytest.vercel.app';
+    //const tempUrl = 'fancytest.vercel.app';
     const hostname = req.hostname;
     switch (hostname) {
         //case tempUrl:
         case 'fancycdn.fun':
             return res.sendFile(__dirname + '/public/html/main/index.html');
 
-            case tempUrl:
             case 'elvaraclass.fancycdn.fun':
                 return res.sendFile(__dirname + '/public/html/elvara/dist/index.html');
 
@@ -52,9 +51,8 @@ server.all('/', function (req, res) {
                     return res.sendFile(__dirname + '/public/html/ddika/index.html');
 
                     default:
-                        res.send('Unknown domain');
+                        return res.sendFile(__dirname + '/public/html/main/index.html');
     }
-    //res.sendFile(__dirname + '/public/html/main/index.html');
 });
 
 //FOR ELVARA CLASS
