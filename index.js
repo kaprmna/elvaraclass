@@ -31,7 +31,7 @@ app.use(express.static(__dirname + '/public'));
 //ROUTE SET
 app.all('/', function (req, res) {
     const tempUrl = 'fancytest.vercel.app';
-    const hostname = read.hostname;
+    const hostname = req.hostname;
     switch (hostname) {
         case tempUrl:
         case 'fancycdn.fun':
