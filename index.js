@@ -39,7 +39,7 @@ server.get('/', function (req, res) {
     let tempUrl = 'fancytest';
     const hostname = req.hostname;
     switch (hostname) {
-        case 'fancycdn.fun' || `${tempUrl}.vercel.app`:
+        case 'fancytest.vercel.app':
             return res.sendFile("../html/main/index.html");
 
             case 'elvaraclass.fancycdn.fun' || `elvaraclass.${tempUrl}.vercel.app`:
