@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const rateLimiter = require('express-rate-limit');
 const compression = require('compression');
+const path = require('path');
 
 const server = express();
 
@@ -36,20 +37,28 @@ server.use(rateLimiter({ windowMs: 15 * 60 * 1000, max: 100, headers: true }));
 
 //SET ROUTE
 server.get('/', function (req, res) {
-    let tempUrl = 'fancytest';
+     let tempUrl = 'fancytest';
     const hostname = req.hostname;
+
     switch (hostname) {
+
         case 'fancytest.vercel.app':
-            return res.sendFile("../html/main/index.html");
+            return res.sendFile(
+                path.join(__dirname, '../html/main/index.html')
+            );
 
-            case 'elvaraclass.fancycdn.fun' || `elvaraclass.${tempUrl}.vercel.app`:
-                return res.sendFile("../html/elvara/dist/index.html");
+        case 'elvaraclass.fancycdn.fun':
+        case `elvaraclass.${tempUrl}.vercel.app`:
+            return res.sendFile(
+                path.join(__dirname, '../html/elvara/dist/index.html')
+            );
 
-                case 'ddika.fancycdn.fun' || `ddika.${tempUrl}.vercel.app`:
-                    return res.send('Portfolio are maintenance');
+        case 'ddika.fancycdn.fun':
+        case `ddika.${tempUrl}.vercel.app`:
+            return res.send('Portfolio are maintenance');
 
-            default: 
-            res.sendStatus(404).send('Unknown domain');
+        default:
+            return res.status(404).send('Unknown domain');
     }
 });
 
