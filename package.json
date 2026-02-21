@@ -1,0 +1,30 @@
+{
+  "name": "gtlogin",
+  "version": "0.1.0",
+  "description": "Login Dasboard for Growtopia Private Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YoruAkio/GTLitiumLogin.git"
+  },
+  "author": "YoruAkio <yoruakio@proton.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YoruAkio/GTLitiumLogin/issues"
+  },
+  "homepage": "https://github.com/YoruAkio/GTLitiumLogin#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "compression": "^1.7.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-rate-limit": "^7.4.1",
+    "fs": "0.0.1-security",
+    "nodemon": "^3.1.7"
+  }
+}
