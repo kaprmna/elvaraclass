@@ -58,7 +58,6 @@ server.all('/', function (req, res) {
 });
 
 //FOR ELVARA CLASS
-server.use(express.static(__dirname + '/public/html/elvara/dist'));
 
 //SERVER SET
 module.exports = server;
