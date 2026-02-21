@@ -1,0 +1,60 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const rateLimiter = require('express-rate-limit');
+const compression = require('compression');
+
+const server = express();
+
+//SET SECURITY
+server.use(compression({
+    level: 5,
+    threshold: 0,
+    filter: (req, res) => {
+        if (req.headers['x-no-compression']) {
+            return false;
+        }
+        return compression.filter(req, res);
+    }
+}));
+server.set('trust proxy', 1);
+server.use(function (req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept',
+    );
+    console.log(`[${new Date().toLocaleString()}] ${req.method} ${req.url} - ${res.statusCode}`);
+    next();
+});
+server.use(bodyParser.urlencoded({ extended: true }));
+server.use(express.json());
+server.use(rateLimiter({ windowMs: 15 * 60 * 1000, max: 100, headers: true }));
+
+//SET API
+
+
+
+//SET ROUTE
+server.get('/', function (req, res) {
+    let tempUrl = 'fancytest';
+    const hostname = req.hostname;
+    switch (hostname) {
+        case 'fancycdn.fun' || `${tempUrl}.vercel.app`:
+            return res.sendFile("../html/main/index.html");
+
+            case 'elvaraclass.fancycdn.fun' || `elvaraclass.${tempUrl}.vercel.app`:
+                return res.sendFile("../html/elvara/dist/index.html");
+
+                case 'ddika.fancycdn.fun' || `ddika.${tempUrl}.vercel.app`:
+                    return res.send('Portfolio are maintenance');
+
+            default: 
+            res.sendStatus(404).send('Unknown domain');
+    }
+});
+
+//START SERVER
+const runPort = 5000;
+server.listen(runPort, function () {
+    console.log(`Server Running On Port: ${runPort}`);
+});
