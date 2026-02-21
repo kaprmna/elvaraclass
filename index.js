@@ -4,15 +4,7 @@ const rateLimit = require('express-rate-limit');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 
-const ipNow = "134.199.147.136";
-const hostdo = 
-`134.199.147.136 growtopia1.com
-134.199.147.136 growtopia2.com
-134.199.147.136 www.growtopia1.com
-134.199.147.136 www.growtopia2.com
-134.199.147.136 growtopiagame.com
-`;
-
+//SET SECURITY
 app.use(compression({
     level: 5,
     filter: (req, res) => {
@@ -46,29 +38,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.all('/ios', (req, res) => {
-     res.set('Content-Type', 'text/plain');
-    res.send(
-        `[General]
-
-[Rule]
-FINAL,DIRECT
-
-[Host]
-www.growtopia2.com = ${ipNow}
-www.growtopia1.com = ${ipNow}
-growtopia2.com = ${ipNow}
-growtopia1.com = ${ipNow}
-        `
-    );
-});
-app.all('/android', (req, res) => {
-    res.set('Content-Type', 'text/plain');
-    res.send(hostdo);
-});
-
 app.all('/', function (req, res) {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(__dirname + '/public/html/main/index.html');
 });
 
 app.listen(5000, function () {
