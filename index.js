@@ -30,7 +30,23 @@ app.use(express.static(__dirname + '/public'));
 
 //ROUTE SET
 app.all('/', function (req, res) {
-    res.sendFile(__dirname + '/public/html/main/index.html');
+    const tempUrl = 'fancytest.vercel.app';
+    const hostname = read.hostname;
+    switch (hostname) {
+        case tempUrl:
+        case 'fancycdn.fun':
+            return res.sendFile(__dirname + '/public/html/main/index.html');
+
+            case 'elvaraclass.fancycdn.fun':
+                return res.sendFile(__dirname + 'public/html/elvara/dist/index.html');
+
+                case 'ddika.fancycdn.fun':
+                    return res.sendFile(__dirname + 'public/html/ddika/index.html');
+
+                    default:
+                        res.send('Unknown domain');
+    }
+    //res.sendFile(__dirname + '/public/html/main/index.html');
 });
 
 //SERVER SET
