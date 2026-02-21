@@ -28,20 +28,13 @@ app.use(rateLimit({
 app.set('trust proxy', 1);
 app.use(express.static(__dirname + '/public'));
 
-app.use((req, res, next) => {
-    if (req.url.match(/\.(js|css)$/i)) {
-        const referer = req.get('referer');
-        if (referer && !referer.startsWith(req.protocol + '://' + req.get('host'))) {
-            return res.status(403).send('Forbidden');
-        }
-    }
-    next();
-});
-
+//ROUTE SET
 app.all('/', function (req, res) {
     res.sendFile(__dirname + '/public/html/main/index.html');
 });
 
-app.listen(5000, function () {
-    console.log(`Listening on port 5000`);
+//SERVER SET
+const runPort = 5000;
+app.listen(runPort, function () {
+    console.log(`Server Running`);
 });
