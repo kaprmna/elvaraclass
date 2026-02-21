@@ -27,6 +27,7 @@ server.use(function (req, res, next) {
     console.log(`[${new Date().toLocaleString()}] ${req.method} ${req.url} - ${res.statusCode}`);
     next();
 });
+server.use(express.static("public"));
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(express.json());
 server.use(rateLimiter({ windowMs: 15 * 60 * 1000, max: 100, headers: true }));
