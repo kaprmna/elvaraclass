@@ -34,7 +34,6 @@ server.all('/', function (req, res) {
     //const tempUrl = 'fancytest.vercel.app';
     const hostname = req.hostname;
     switch (hostname) {
-        //case tempUrl:
         case 'fancycdn.fun':
             return res.sendFile(__dirname + '/public/html/main/dist/index.html');
 
