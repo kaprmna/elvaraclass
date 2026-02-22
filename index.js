@@ -45,7 +45,7 @@ server.all('/', function (req, res) {
                     return res.sendFile(__dirname + '/public/html/ddika/index.html');
 
                     default:
-                        return res.sendFile(__dirname + '/public/html/main/index.html');
+                        return res.sendFile(__dirname + '/public/html/main/dist/index.html');
     }
 });
 
