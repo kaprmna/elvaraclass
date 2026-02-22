@@ -36,7 +36,7 @@ server.all('/', function (req, res) {
     switch (hostname) {
         //case tempUrl:
         case 'fancycdn.fun':
-            return res.sendFile(__dirname + '/public/html/main/index.html');
+            return res.sendFile(__dirname + '/public/html/main/dist/index.html');
 
             case 'elvaraclass.fancycdn.fun':
                 return res.sendFile(__dirname + '/public/html/elvara/dist/index.html');
