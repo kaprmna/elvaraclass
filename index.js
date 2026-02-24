@@ -35,21 +35,21 @@ server.all('/', function (req, res) {
     const hostname = req.hostname;
     switch (hostname) {
         case 'fancycdn.fun':
-            return res.sendFile(__dirname + '/public/html/main/dist/index.html');
+            return res.sendFile(__dirname + '/public/html/main/index.html');
 
             case 'elvaraclass.fancycdn.fun':
-                return res.sendFile(__dirname + '/public/html/elvara/dist/index.html');
+                return res.sendFile(__dirname + '/public/html/elvara/index.html');
 
                 case 'ddika.fancycdn.fun':
                     return res.sendFile(__dirname + '/public/html/ddika/index.html');
 
                     default:
-                        return res.sendFile(__dirname + '/public/html/main/dist/index.html');
+                        return res.sendFile(__dirname + '/public/html/main/index.html');
     }
 });
 
 //FOR ELVARA CLASS
-server.use(express.static(__dirname + '/public/html/elvara/dist'));
+server.use(express.static(__dirname + '/public/html/elvara'));
 
 //SERVER SET
 module.exports = server;
